@@ -1,0 +1,41 @@
+services:
+  postgres:
+    container_name: postgres
+    image: 'postgres:15'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: cards 
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
+    networks:
+      - cards 
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+  interledger-cards:
+    hostname: interledger-cards 
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: always
+    networks:
+      - cards 
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: production 
+      COOKIE_SECRET: test-cookie-secret
+      DATABASE_URL: postgres://postgres:password@postgres/cards
+
+networks:
+  cards:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/24
+          gateway: 10.5.0.1
+
+volumes:
+  pg-data:

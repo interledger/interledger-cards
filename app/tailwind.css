@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 101 1 216;
+    --accent-primary: 207 40 1;
+  }
+
+  html, body {
+    @apply h-full w-full
+  }
+
+  body::before {
+    @apply fixed w-full h-full top-0 left-0 -z-10 bg-[url(/bg-swirl.svg)] bg-repeat bg-[length:100%];
+    content: "";
+    filter: blur(150px) opacity(0.25);
+    transform: translate3d(0, 0, 0);
+
+  }
+}
