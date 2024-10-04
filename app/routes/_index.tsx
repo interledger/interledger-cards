@@ -85,7 +85,7 @@ export default function Index() {
             name="firstName"
             label="First name"
             minLength={1}
-            errorMessage={fetcher.data?.errors.lastName}
+            errorMessage={fetcher.data?.errors.firstName}
             required
           />
           <Textfield
@@ -93,7 +93,7 @@ export default function Index() {
             name="lastName"
             label="Last name"
             minLength={1}
-            errorMessage={fetcher.data?.errors.firstName}
+            errorMessage={fetcher.data?.errors.lastName}
             required
           />
           <Textfield type="email" name="email" label="Email" required />

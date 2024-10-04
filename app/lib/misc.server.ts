@@ -54,7 +54,7 @@ export function validateName(name: string): Result<undefined, Error> {
     );
   }
 
-  if (!/^[A-Za-z-']*$/.test(name)) {
+  if (!/^[A-Za-z-' ]*$/.test(name)) {
     return err(
       new Error("The name must contain only A-Z, a-z, - and ' characters.")
     );
